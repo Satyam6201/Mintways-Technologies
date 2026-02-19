@@ -60,7 +60,7 @@ export default function Footer() {
                 <span className="text-black font-black text-2xl">M</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-black tracking-tighter leading-none">MINTWAYS</span>
+                <span className="text-2xl font-black tracking-tighter leading-none">Code Innovative Technologies</span>
                 <span className="text-[10px] font-mono tracking-[0.4em] text-[#ccff00]">EST_2024</span>
               </div>
             </Link>
