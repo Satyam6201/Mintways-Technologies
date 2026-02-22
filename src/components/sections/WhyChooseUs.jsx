@@ -1,128 +1,171 @@
 import { motion } from 'framer-motion';
-import { FaShieldAlt, FaChartLine, FaSync, FaHeadset, FaTerminal } from 'react-icons/fa';
+import { 
+  FaShieldAlt, FaSync, FaHeadset, FaTerminal, 
+  FaFingerprint, FaSatelliteDish, FaCodeBranch 
+} from 'react-icons/fa';
+import { MdGraphicEq } from 'react-icons/md';
 
 const features = [
   { 
-    title: 'Precision Business Logic', 
-    desc: 'We decode your workflow to identify bottlenecks before writing a single line of code.',
+    title: 'Precision Logic', 
+    desc: 'We architect your business DNA. Our engineers map every workflow dependency to eliminate technical debt before it even exists.',
     icon: <FaTerminal />, 
-    color: 'text-[#ccff00]', // Toxic Emerald
-    glow: 'shadow-[#ccff00]/10',
+    color: 'text-[#ccff00]',
+    glow: 'hover:shadow-[#ccff00]/20',
     border: 'group-hover:border-[#ccff00]/50' 
   },
   { 
-    title: 'Velocity Delivery', 
-    desc: 'Our "Sprint-Release" cycles ensure you see progress every 72 hours, not every 6 months.',
-    icon: <FaSync />, 
-    color: 'text-cyan-400', // Cyber Cyan
-    glow: 'shadow-cyan-400/10',
-    border: 'group-hover:border-cyan-400/50' 
+    title: 'Velocity Protocol', 
+    desc: 'Bypass traditional delays. Our "Rapid-Pulse" CI/CD pipeline ensures feature deployment at the speed of thought.',
+    icon: <FaCodeBranch />, 
+    color: 'text-[#ccff00]',
+    glow: 'hover:shadow-[#ccff00]/20',
+    border: 'group-hover:border-[#ccff00]/50' 
   },
   { 
-    title: 'Fortress Security', 
-    desc: 'Enterprise-grade encryption and SOC2-compliant architectures come standard.',
+    title: 'Ghost Security', 
+    desc: 'Impenetrable SOC2-ready encryption layers. We build digital fortresses that remain invisible to external threats.',
     icon: <FaShieldAlt />, 
-    color: 'text-indigo-500', // Electric Indigo
-    glow: 'shadow-indigo-500/10',
-    border: 'group-hover:border-indigo-500/50' 
+    color: 'text-[#ccff00]',
+    glow: 'hover:shadow-[#ccff00]/20',
+    border: 'group-hover:border-[#ccff00]/50' 
   },
   { 
-    title: 'Elite Surveillance', 
-    desc: '24/7 technical monitoring to ensure your systems never face a millisecond of downtime.',
+    title: '24/7 Surveillance', 
+    desc: 'Real-time telemetry and predictive monitoring. If a node flinches, our tactical team has already patched it.',
     icon: <FaHeadset />, 
-    color: 'text-fuchsia-500', // Deep Violet/Fuchsia
-    glow: 'shadow-fuchsia-500/10',
-    border: 'group-hover:border-fuchsia-500/50' 
+    color: 'text-[#ccff00]',
+    glow: 'hover:shadow-[#ccff00]/20',
+    border: 'group-hover:border-[#ccff00]/50' 
   }
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-32 px-6 relative overflow-hidden bg-transparent">
-      {/* 1. LAYERED BACKGROUND: Tech Grid + Moving Data Particles */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-indigo-950/10 to-black pointer-events-none" />
+    <section className="py-20 lg:py-32 px-6 relative overflow-hidden bg-[#030303]">
+      
+      {/* --- CYBER BACKGROUND ELEMENTS --- */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#ccff00]/30 to-transparent" />
+      
+      {/* Moving Ambient Glow */}
+      <motion.div 
+        animate={{ 
+          opacity: [0.1, 0.2, 0.1],
+          scale: [1, 1.2, 1] 
+        }}
+        transition={{ duration: 8, repeat: Infinity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ccff00]/5 blur-[120px] rounded-full pointer-events-none" 
+      />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center relative z-10">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
         
         {/* LEFT: THE BLUEPRINT VISUAL */}
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative"
+          className="relative order-2 lg:order-1"
         >
-          <div className="relative z-10 rounded-[3rem] p-px bg-gradient-to-b from-indigo-500/50 via-transparent to-cyan-500/50 overflow-hidden group">
-            <div className="bg-black rounded-[2.9rem] overflow-hidden">
+          {/* Main Visual Frame */}
+          <div className="relative z-10 rounded-[2rem] lg:rounded-[3rem] p-px bg-gradient-to-b from-[#ccff00]/40 via-transparent to-white/10 overflow-hidden group">
+            <div className="bg-[#080808] rounded-[1.9rem] lg:rounded-[2.9rem] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=2000" 
-                alt="Datacenter Engineering" 
-                className="w-full grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" 
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000" 
+                alt="Cyber Engineering" 
+                className="w-full h-[400px] lg:h-[600px] object-cover grayscale opacity-30 group-hover:opacity-60 group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
               />
             </div>
+
+            {/* Terminal Overlay */}
+            <div className="absolute top-6 left-6 right-6 bottom-6 border border-white/5 rounded-2xl pointer-events-none flex flex-col justify-between p-6">
+               <div className="flex justify-between items-start">
+                  <div className="font-mono text-[10px] text-[#ccff00] space-y-1">
+                    <p className="flex gap-2"><span className="opacity-50">&gt;</span> STATUS: OPERATIONAL</p>
+                    <p className="flex gap-2"><span className="opacity-50">&gt;</span> ENCRYPTION: AES_256</p>
+                  </div>
+                  <FaFingerprint className="text-[#ccff00] text-2xl animate-pulse" />
+               </div>
+               <div className="h-24 w-full bg-black/40 backdrop-blur-md rounded-xl border border-white/10 p-4 flex items-center justify-center">
+                  <MdGraphicEq className="text-4xl text-[#ccff00]" />
+                  <div className="ml-4 flex-1">
+                    <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                      <motion.div 
+                        animate={{ x: ['-100%', '100%'] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        className="h-full w-1/3 bg-[#ccff00]"
+                      />
+                    </div>
+                    <p className="text-[8px] font-mono text-zinc-500 mt-2 uppercase tracking-widest">Global_Sync_Protocol</p>
+                  </div>
+               </div>
+            </div>
             
-            {/* Horizontal Scanning Laser */}
+            {/* Vertical Scanning Laser */}
             <motion.div 
-              animate={{ top: ['-10%', '110%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-indigo-400 to-transparent blur-[2px] z-20"
+              animate={{ left: ['-10%', '110%'] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              className="absolute top-0 w-[2px] h-full bg-[#ccff00] blur-[4px] z-20"
             />
           </div>
 
-          {/* Experience Floating Console */}
+          {/* Floating Experience Badge */}
           <motion.div 
-            whileHover={{ scale: 1.05, rotate: -2 }}
-            className="absolute -bottom-6 -right-6 bg-[#0a0a0a]/90 backdrop-blur-3xl border border-indigo-500/20 p-8 rounded-3xl shadow-2xl hidden md:block"
+            whileHover={{ y: -10 }}
+            className="absolute -bottom-4 -right-2 lg:-bottom-6 lg:-right-6 bg-zinc-900 border border-[#ccff00]/30 p-6 lg:p-8 rounded-2xl lg:rounded-3xl shadow-2xl z-30"
           >
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-3 h-3 rounded-full bg-indigo-500 animate-pulse" />
-              <span className="text-[10px] font-mono text-indigo-400 tracking-[0.3em]">SYSTEM_STABLE</span>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="flex h-2 w-2 rounded-full bg-[#ccff00] animate-ping" />
+              <span className="text-[9px] font-mono text-zinc-400 tracking-widest uppercase">Legacy_Node</span>
             </div>
-            <h4 className="text-5xl font-black text-white italic">20<span className="text-indigo-500">YRS</span></h4>
-            <p className="text-[9px] uppercase tracking-widest text-zinc-500 mt-2 font-bold">Industry Seniority</p>
+            <h4 className="text-4xl lg:text-5xl font-black text-white italic">20<span className="text-[#ccff00]">YRS</span></h4>
+            <p className="text-[8px] uppercase tracking-[0.3em] text-zinc-500 mt-1 font-bold">Industry Seniority</p>
           </motion.div>
         </motion.div>
 
         {/* RIGHT: THE CONTENT */}
-        <div className="space-y-12">
-          <div>
+        <div className="space-y-10 lg:space-y-16 order-1 lg:order-2 text-center lg:text-left">
+          <div className="inline-block">
             <motion.div 
               initial={{ width: 0 }}
-              whileInView={{ width: '100px' }}
-              className="h-1 bg-indigo-500 mb-8"
+              whileInView={{ width: '80px' }}
+              className="h-1 bg-[#ccff00] mb-6 mx-auto lg:ml-0"
             />
             <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-6xl md:text-8xl font-black tracking-tighter text-white leading-[0.85] mb-8"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white leading-[0.9] mb-8"
             >
-              ELITE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400">INFRASTRUCTURE.</span>
+              ELITE <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ccff00] via-white to-[#ccff00] bg-[size:200%_auto] animate-gradient">ENGINEERING.</span>
             </motion.h2>
-            <p className="text-zinc-400 text-xl font-light leading-relaxed max-w-xl">
-              We eliminate the guesswork. Mintways provides <span className="text-white border-b border-indigo-500/50">battle-tested frameworks</span> designed for massive scale and impenetrable security.
+            <p className="text-zinc-400 text-lg lg:text-xl font-light leading-relaxed max-w-xl mx-auto lg:ml-0">
+              MINTWAYS is not just a service provider. We are your <span className="text-[#ccff00] font-bold">Tactical Infrastructure Partner</span>, engineering battle-tested systems for global scale.
             </p>
           </div>
 
           {/* FEATURE TILES */}
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
             {features.map((item, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`p-8 rounded-3xl bg-zinc-900/20 border border-white/5 backdrop-blur-md transition-all duration-500 group ${item.border} ${item.glow} hover:bg-indigo-500/[0.03]`}
+                className={`p-6 lg:p-8 rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-xl transition-all duration-500 group ${item.border} ${item.glow} hover:bg-[#ccff00]/[0.02]`}
               >
-                <div className={`text-3xl mb-6 ${item.color} group-hover:rotate-[360deg] transition-transform duration-700`}>
+                <div className={`text-3xl mb-4 lg:mb-6 ${item.color} group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500`}>
                   {item.icon}
                 </div>
-                <h4 className="text-lg font-bold text-white mb-3 tracking-tight">{item.title}</h4>
-                <p className="text-[13px] text-zinc-500 leading-relaxed group-hover:text-zinc-300 transition-colors">
+                <h4 className="text-lg font-black text-white mb-2 tracking-tight uppercase">{item.title}</h4>
+                <p className="text-[12px] text-zinc-500 leading-relaxed group-hover:text-zinc-300 transition-colors">
                   {item.desc}
                 </p>
               </motion.div>
             ))}
           </div>
+          
+          {/* Mobile Bottom Spacer */}
+          <div className="h-8 lg:hidden" />
         </div>
       </div>
     </section>

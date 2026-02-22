@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { 
-  FaEnvelope, FaLinkedinIn, FaTwitter, FaGithub, 
-  FaDiscord, FaBars, FaTimes, FaCode, FaMicrochip, 
-  FaShieldAlt, FaSearch, FaTerminal 
+  FaBars, FaTimes, FaCode, FaMicrochip, 
+  FaShieldAlt, FaTerminal, FaCircle, FaLongArrowAltRight
 } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
-import { MdOutlineLightMode, MdOutlineDarkMode, MdGraphicEq } from 'react-icons/md';
+import { MdGraphicEq, MdSettingsInputComponent } from 'react-icons/md';
 
-export default function Navbar({ theme, toggleTheme }) {
+export default function Navbar() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -17,10 +16,11 @@ export default function Navbar({ theme, toggleTheme }) {
   const location = useLocation();
   const { scrollY } = useScroll();
 
+  // Navigation Background Animation
   const navBackground = useTransform(
     scrollY,
-    [0, 50],
-    ["rgba(0,0,0,0)", theme === 'dark' ? "rgba(3, 3, 3, 0.85)" : "rgba(255, 255, 255, 0.85)"]
+    [0, 80],
+    ["rgba(3, 3, 3, 0)", "rgba(3, 3, 3, 0.95)"]
   );
 
   useEffect(() => {
@@ -38,102 +38,95 @@ export default function Navbar({ theme, toggleTheme }) {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-[100]">
+    <header className="fixed top-0 w-full z-[100] selection:bg-[#ccff00] selection:text-black">
       
-      {/* 1. TOP BAR: SYSTEM DIAGNOSTICS */}
-      <div className="hidden md:flex bg-zinc-950 text-zinc-500 py-1.5 px-10 justify-between items-center text-[9px] font-mono tracking-[0.25em] border-b border-white/5 overflow-hidden">
-        <div className="flex gap-8 items-center">
+      {/* 1. TOP BAR: GLOBAL SYSTEM DIAGNOSTICS */}
+      <div className="hidden lg:flex bg-black text-zinc-600 py-1.5 px-10 justify-between items-center text-[8px] font-mono tracking-[0.3em] border-b border-white/5">
+        <div className="flex gap-10 items-center">
           <motion.div 
-            animate={{ opacity: [0.4, 1, 0.4] }} 
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={{ opacity: [0.3, 1, 0.3] }} 
+            transition={{ duration: 3, repeat: Infinity }}
             className="flex items-center gap-2 text-[#ccff00]"
           >
-            <MdGraphicEq /> <span>ENCRYPTED_SESSION: ACTIVE</span>
+            <MdGraphicEq className="animate-pulse" /> <span>CORE_SYNC: ACTIVE</span>
           </motion.div>
-          <span className="opacity-20 text-white">|</span>
-          <a href="mailto:hr@codeinnovativetechnologies.com" className="hover:text-white transition-colors">
-            hr@codeinnovativetechnologies.com
-          </a>
+          <div className="flex items-center gap-2">
+            <span className="w-1 h-1 rounded-full bg-[#ccff00] animate-ping" />
+            <span>ENCRYPTED_LINE_80_4221</span>
+          </div>
         </div>
 
-        <div className="flex items-center gap-6 text-white font-bold">
-          <div className="flex gap-4 border-r border-white/10 pr-6 text-zinc-500">
-            {[FaLinkedinIn, FaTwitter, FaGithub, FaDiscord].map((Icon, i) => (
-              <Icon key={i} className="hover:text-[#ccff00] cursor-pointer transition-all duration-300 hover:-translate-y-0.5" />
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            NODE_01: STATUS_OK
-          </div>
+        <div className="flex items-center gap-8 font-black uppercase">
+          <span className="text-zinc-800">Uptime: 99.998%</span>
+          <span className="text-[#ccff00]/50 tracking-tighter">OS_V: 4.2.0_MINT</span>
         </div>
       </div>
 
       {/* 2. MAIN NAVIGATION */}
       <motion.nav 
         style={{ backgroundColor: navBackground }}
-        className={`relative transition-all duration-500 backdrop-blur-xl ${
-          scrolled ? 'py-3 border-b border-white/10 shadow-2xl' : 'py-6 border-b border-transparent'
+        className={`relative transition-all duration-700 backdrop-blur-md ${
+          scrolled ? 'py-4 border-b border-[#ccff00]/20' : 'py-8 border-b border-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           
-          {/* Logo Section */}
-          <Link to="/" className="group flex items-center gap-3">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 bg-indigo-600 rounded-lg group-hover:rotate-90 transition-transform duration-500 shadow-lg shadow-indigo-500/20" />
-              <div className="absolute inset-0 flex items-center justify-center text-white font-black text-xl z-10">M</div>
+          {/* --- BRAND LOGO --- */}
+          <Link to="/" className="group flex items-center gap-4">
+            <div className="relative w-11 h-11 bg-zinc-900 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-[#ccff00]/50 transition-colors">
+              <MdSettingsInputComponent className="text-[#ccff00] text-2xl group-hover:rotate-180 transition-transform duration-700" />
+              {/* Corner Accents */}
+              <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-[#ccff00] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-[#ccff00] opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter dark:text-white leading-none">Code Innovative</span>
-              <span className="text-[8px] font-mono tracking-[0.4em] text-indigo-500 font-bold uppercase">Technologies</span>
+              <span className="text-2xl font-black tracking-tighter text-white leading-none">CODE</span>
+              <span className="text-[7px] font-mono tracking-[0.5em] text-[#ccff00] font-bold uppercase mt-1">Innovative Technologies</span>
             </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <ul className="hidden lg:flex items-center gap-10 font-bold text-[10px] tracking-[0.3em] uppercase">
+          {/* --- DESKTOP MENU --- */}
+          <ul className="hidden lg:flex items-center gap-12 font-black text-[9px] tracking-[0.4em] uppercase text-zinc-400">
             {['Home', 'About', 'Career'].map((name) => (
-              <li key={name} className="relative py-2">
+              <li key={name} className="relative group overflow-hidden">
                 <Link 
                   to={name === 'Home' ? '/' : `/${name.toLowerCase()}`} 
-                  className={`transition-colors duration-300 ${isActive(name === 'Home' ? '/' : `/${name.toLowerCase()}`) ? 'text-indigo-500' : 'text-zinc-500 hover:text-indigo-400 dark:hover:text-white'}`}
+                  className={`transition-all duration-300 flex items-center gap-2 ${isActive(name === 'Home' ? '/' : `/${name.toLowerCase()}`) ? 'text-white' : 'hover:text-[#ccff00]'}`}
                 >
+                  <span className={`w-1 h-1 rounded-full bg-[#ccff00] transition-all ${isActive(name === 'Home' ? '/' : `/${name.toLowerCase()}`) ? 'scale-100' : 'scale-0'}`} />
                   {name}
                 </Link>
-                {isActive(name === 'Home' ? '/' : `/${name.toLowerCase()}`) && (
-                  <motion.div layoutId="navActive" className="absolute -bottom-1 left-0 w-full h-[3px] bg-indigo-500 rounded-full" />
-                )}
+                <div className={`absolute bottom-0 left-0 h-px bg-[#ccff00] transition-all duration-500 ${isActive(name === 'Home' ? '/' : `/${name.toLowerCase()}`) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
               </li>
             ))}
             
-            {/* Services Dropdown */}
+            {/* Services Mega Dropdown */}
             <li 
-              className="relative group cursor-pointer py-2"
+              className="relative cursor-pointer"
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}
             >
-              <div className={`flex items-center gap-2 transition-colors ${isServicesOpen ? 'text-indigo-500' : 'text-zinc-500 hover:text-white'}`}>
-                SERVICES <IoIosArrowDown className={`transition-transform duration-500 ${isServicesOpen ? 'rotate-180' : ''}`} />
+              <div className={`flex items-center gap-2 transition-colors ${isServicesOpen ? 'text-[#ccff00]' : 'hover:text-white'}`}>
+                SERVICES <IoIosArrowDown className={`transition-transform duration-500 ${isServicesOpen ? 'rotate-180 text-[#ccff00]' : ''}`} />
               </div>
 
               <AnimatePresence>
                 {isServicesOpen && (
                   <motion.div 
-                    initial={{ opacity: 0, y: 15, rotateX: -10 }}
-                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                    exit={{ opacity: 0, y: 15 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-[380px] bg-white dark:bg-zinc-950 border border-black/10 dark:border-white/10 p-5 mt-4 rounded-[2.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.3)] dark:shadow-[0_30px_100px_rgba(0,0,0,0.8)]"
+                    initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-[400px] bg-[#080808] border border-white/10 p-4 mt-6 rounded-2xl shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
                   >
                     <div className="grid gap-2">
                       {serviceLinks.map((s, idx) => (
-                        <Link key={idx} to={s.path} className="flex items-center gap-5 p-4 rounded-[1.8rem] hover:bg-zinc-50 dark:hover:bg-white/5 transition-all group overflow-hidden relative">
-                          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform`}>
+                        <Link key={idx} to={s.path} className="flex items-center gap-5 p-5 rounded-xl hover:bg-white/5 transition-all group border border-transparent hover:border-[#ccff00]/20">
+                          <div className={`w-12 h-12 rounded-lg bg-zinc-900 flex items-center justify-center text-[#ccff00] text-xl border border-white/5 group-hover:bg-[#ccff00] group-hover:text-black transition-all`}>
                             {s.icon}
                           </div>
                           <div>
-                            <div className="text-[11px] font-black dark:text-white tracking-widest uppercase mb-1">{s.title}</div>
-                            <div className="text-[9px] text-zinc-500 font-mono lowercase">{s.desc}</div>
+                            <div className="text-[10px] font-black text-white tracking-widest uppercase mb-1">{s.title}</div>
+                            <div className="text-[8px] text-zinc-500 font-mono uppercase tracking-tighter">{s.desc}</div>
                           </div>
+                          <FaLongArrowAltRight className="ml-auto opacity-0 group-hover:opacity-100 text-[#ccff00] -translate-x-4 group-hover:translate-x-0 transition-all" />
                         </Link>
                       ))}
                     </div>
@@ -143,107 +136,113 @@ export default function Navbar({ theme, toggleTheme }) {
             </li>
           </ul>
 
-          {/* Buttons and Utilities */}
-          <div className="flex items-center gap-4">
+          {/* --- UTILITIES & MOBILE TOGGLE --- */}
+          <div className="flex items-center gap-6">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-zinc-100 dark:bg-white/5 text-zinc-500 rounded-xl text-[9px] font-mono border border-transparent hover:border-indigo-500/50 transition-all"
+              className="hidden md:flex items-center gap-3 px-5 py-2.5 bg-zinc-900 text-zinc-500 rounded-lg text-[8px] font-mono border border-white/5 hover:border-[#ccff00]/40 transition-all group"
             >
-              <FaTerminal /> <span>K_SEARCH</span>
+              <FaTerminal className="group-hover:text-[#ccff00]" /> <span>ACCESS_TERMINAL</span>
             </button>
-
-            <motion.button 
-              whileHover={{ scale: 1.1, rotate: 10 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleTheme} 
-              className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-[#ccff00] flex items-center justify-center border border-transparent dark:border-white/5"
-            >
-              {theme === 'light' ? <MdOutlineDarkMode size={20} /> : <MdOutlineLightMode size={20} />}
-            </motion.button>
 
             <Link to="/contact">
               <motion.button 
-                whileHover={{ y: -2, boxShadow: "0 10px 25px rgba(79, 70, 229, 0.4)" }}
-                className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl text-[10px] font-black tracking-widest"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative px-8 py-3 bg-[#ccff00] text-black rounded-lg text-[9px] font-black tracking-[0.2em] overflow-hidden group shadow-[0_10px_30px_rgba(204,255,0,0.1)]"
               >
-                INITIALIZE
+                <span className="relative z-10">INITIALIZE</span>
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </motion.button>
             </Link>
 
-            <button className="lg:hidden text-zinc-500 ml-2" onClick={() => setIsMobileMenuOpen(true)}>
-              <FaBars size={24} />
+            <button className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5" onClick={() => setIsMobileMenuOpen(true)}>
+              <div className="w-6 h-[2px] bg-white" />
+              <div className="w-4 h-[2px] bg-[#ccff00] self-end" />
+              <div className="w-6 h-[2px] bg-white" />
             </button>
           </div>
         </div>
       </motion.nav>
 
-      {/* --- MODALS --- */}
-
-      {/* 1. Terminal Search Modal */}
-      <AnimatePresence>
-        {isSearchOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] bg-black/90 backdrop-blur-md flex items-center justify-center p-6"
-            onClick={() => setIsSearchOpen(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }}
-              className="w-full max-w-2xl bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-3xl p-8"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex items-center gap-4 mb-8 text-indigo-500 border-b border-indigo-500/20 pb-4">
-                <FaSearch size={24} />
-                <input 
-                  autoFocus
-                  placeholder="Type a service or command..." 
-                  className="bg-transparent border-none outline-none text-2xl font-black text-zinc-900 dark:text-white w-full placeholder:text-zinc-400 dark:placeholder:text-zinc-700 tracking-tighter"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {['/deploy', '/strategy', '/security', '/docs'].map(cmd => (
-                  <div key={cmd} className="p-4 bg-zinc-50 dark:bg-white/5 rounded-xl text-zinc-500 font-mono text-xs hover:text-indigo-500 dark:hover:text-[#ccff00] cursor-pointer transition-colors">
-                    {cmd}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* 2. Mobile Full-Screen Menu */}
+      {/* --- MOBILE FULL-SCREEN TERMINAL MENU --- */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25 }}
-            className="fixed inset-0 bg-white dark:bg-[#030303] z-[500] p-10 flex flex-col"
+            initial={{ opacity: 0, scale: 1.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.1 }}
+            className="fixed inset-0 bg-[#030303] z-[500] p-8 flex flex-col overflow-hidden"
           >
-             <div className="flex justify-between items-center mb-16">
-              <span className="text-zinc-900 dark:text-white font-black tracking-tighter text-3xl italic">MINTWAYS.</span>
-              <button onClick={() => setIsMobileMenuOpen(false)} className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-white/5 text-zinc-900 dark:text-white flex items-center justify-center">
+            {/* Background Grid Accent */}
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.05] pointer-events-none" />
+
+            <div className="flex justify-between items-center mb-12 relative">
+              <div className="flex flex-col">
+                <span className="text-white font-black text-2xl tracking-tighter">MINT_NAV</span>
+                <span className="text-[8px] font-mono text-[#ccff00]">PATH_ROOT/USER/SYSTEM</span>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="w-14 h-14 rounded-full border border-white/10 text-[#ccff00] flex items-center justify-center">
                 <FaTimes size={20} />
               </button>
             </div>
-            <nav className="flex flex-col gap-6">
+
+            <nav className="flex flex-col gap-2 relative">
               {['Home', 'About', 'Services', 'Career', 'Contact'].map((item, i) => (
                 <motion.div 
                   key={item}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
+                  className="group"
                 >
                   <Link 
                     to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-5xl font-black text-zinc-900 dark:text-white hover:text-indigo-500 dark:hover:text-[#ccff00] transition-colors tracking-tighter block"
+                    className="flex items-center justify-between text-5xl font-black text-white py-4 border-b border-white/5 group-hover:pl-4 group-hover:text-[#ccff00] transition-all"
                   >
-                    {item}
+                    <span>{item.toUpperCase()}</span>
+                    <FaLongArrowAltRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={24} />
                   </Link>
                 </motion.div>
               ))}
             </nav>
+
+            <div className="mt-auto flex justify-between items-center pt-10 font-mono text-[9px] text-zinc-600">
+              <span>SECURE_SESSION_v4</span>
+              <span className="text-[#ccff00]">MINTWAYS_TECH_©_2026</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* SEARCH MODAL (Terminal Style) */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[600] bg-black/95 backdrop-blur-xl flex items-center justify-center p-6"
+            onClick={() => setIsSearchOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, y: 10 }} animate={{ scale: 1, y: 0 }}
+              className="w-full max-w-2xl bg-zinc-900 border border-[#ccff00]/30 rounded-2xl p-8 relative"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <FaTerminal className="text-[#ccff00]" />
+                <span className="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">Mintways_Global_Search</span>
+              </div>
+              <input 
+                autoFocus 
+                placeholder="EXECUTE_COMMAND..." 
+                className="w-full bg-transparent border-none outline-none text-4xl font-black text-white placeholder:text-zinc-800 uppercase tracking-tighter"
+              />
+              <div className="h-px bg-white/5 my-8" />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {['/services', '/apply', '/hire', '/team'].map(tag => (
+                  <div key={tag} className="p-3 bg-white/5 border border-white/5 rounded-lg text-center font-mono text-[9px] text-zinc-500 hover:text-[#ccff00] hover:border-[#ccff00]/30 cursor-pointer">
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

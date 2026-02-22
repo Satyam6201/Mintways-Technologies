@@ -1,12 +1,22 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   FaPhoneAlt, FaEnvelope, FaLinkedin, FaGithub, 
-  FaTwitter, FaDiscord, FaArrowUp, FaTerminal, FaShieldAlt
+  FaTwitter, FaDiscord, FaArrowUp, FaTerminal, FaShieldAlt,
+  FaLongArrowAltRight, FaGlobeAmericas
 } from 'react-icons/fa';
+import { MdSettingsInputComponent, MdGraphicEq } from 'react-icons/md';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
+  // Real-time clock for the "System Time" feel
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const footerLinks = [
     { 
@@ -14,7 +24,7 @@ export default function Footer() {
       items: [
         { name: "Home", path: "/" },
         { name: "About Us", path: "/about" },
-        { name: "Services", path: "/services" },
+        { name: "Services", path: "/services/app-dev" },
         { name: "Portfolio", path: "/portfolio" }
       ] 
     },
@@ -41,72 +51,65 @@ export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
-    <footer className="relative bg-[#050505] text-white pt-32 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-[#030303] text-white pt-32 overflow-hidden border-t border-white/5">
       
-      {/* 1. BACKGROUND TEXT DECOR (CYBERPUNK FEEL) */}
-      <div className="absolute top-10 left-0 w-full whitespace-nowrap opacity-[0.02] pointer-events-none select-none">
-        <span className="text-[15rem] font-black italic tracking-tighter uppercase">
-          Code Innovative Technologies
-        </span>
-      </div>
+      {/* --- BACKGROUND DECOR --- */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ccff00]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-[400px] h-[400px] bg-indigo-600/5 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-16 mb-24">
           
-          {/* BRAND BLOCK */}
+          {/* BRAND BLOCK: MATCHED TO NAVBAR */}
           <div className="lg:col-span-2 space-y-8">
-            <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 bg-[#ccff00] rounded-2xl flex items-center justify-center rotate-3 group-hover:rotate-12 transition-transform duration-500 shadow-[0_0_20px_rgba(204,255,0,0.3)]">
-                <span className="text-black font-black text-2xl">M</span>
+            <Link to="/" className="group flex items-center gap-4">
+              <div className="relative w-12 h-12 bg-zinc-900 rounded-xl flex items-center justify-center border border-white/10 group-hover:border-[#ccff00]/50 transition-all duration-500">
+                <MdSettingsInputComponent className="text-[#ccff00] text-2xl group-hover:rotate-180 transition-transform duration-700" />
+                <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-[#ccff00]" />
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-[#ccff00]" />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-black tracking-tighter leading-none">Code Innovative Technologies</span>
-                <span className="text-[10px] font-mono tracking-[0.4em] text-[#ccff00]">EST_2024</span>
+                <span className="text-2xl font-black tracking-tighter leading-none">MINTWAYS</span>
+                <span className="text-[8px] font-mono tracking-[0.4em] text-[#ccff00] uppercase mt-1 italic">Innovative_Tech</span>
               </div>
             </Link>
             
-            <p className="text-zinc-500 text-sm leading-relaxed max-w-sm">
-              We engineer digital fortresses. From high-frequency trading apps to secure cloud infrastructure, we build the protocols that run the world.
+            <p className="text-zinc-500 text-sm leading-relaxed max-w-sm font-medium">
+              We architect digital legacies. From high-frequency trading apps to secure cloud infrastructure, we build the protocols that run the world.
             </p>
 
-            {/* COMMAND LINE SHORTCUT PREVIEW */}
-            <div className="p-4 bg-zinc-900/50 border border-white/5 rounded-2xl font-mono text-[11px] space-y-2">
-              <div className="flex items-center gap-2 text-[#ccff00]">
-                <FaTerminal size={10} /> <span>QUICK_NAV</span>
+            {/* LIVE SYSTEM FEED */}
+            <div className="p-5 bg-white/5 border border-white/10 rounded-2xl font-mono text-[10px] space-y-3 relative overflow-hidden group">
+              <div className="flex items-center justify-between text-[#ccff00]">
+                <div className="flex items-center gap-2">
+                  <MdGraphicEq className="animate-pulse" /> <span>SYSTEM_TERMINAL</span>
+                </div>
+                <span className="opacity-50">v4.2.0</span>
               </div>
-              <div className="grid grid-cols-2 gap-2 text-zinc-500">
-                <Link to="/career" className="hover:text-white transition-colors underline decoration-white/10"># apply_now</Link>
-                <Link to="/contact" className="hover:text-white transition-colors underline decoration-white/10"># init_brief</Link>
+              <div className="space-y-1.5 text-zinc-400">
+                <p className="flex justify-between"><span># CPU_LOAD</span> <span className="text-white">12.4%</span></p>
+                <p className="flex justify-between"><span># NET_TRAFFIC</span> <span className="text-white">OPTIMIZED</span></p>
               </div>
+              <div className="absolute bottom-0 left-0 h-[1px] bg-[#ccff00] w-0 group-hover:w-full transition-all duration-700" />
             </div>
           </div>
 
           {/* DYNAMIC LINK GROUPS */}
           {footerLinks.map((group, idx) => (
             <div key={idx} className="space-y-8">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-[#ccff00] border-l-2 border-[#ccff00] pl-3">
-                {group.title}
+              <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ccff00]" /> {group.title}
               </h4>
               <ul className="space-y-4">
                 {group.items.map((link) => (
                   <li key={link.name}>
-                    {link.path.startsWith('http') ? (
-                      <a 
-                        href={link.path} 
-                        target="_blank" 
-                        rel="noreferrer"
-                        className="text-zinc-500 text-sm hover:text-white hover:translate-x-2 transition-all flex items-center gap-2"
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <Link 
-                        to={link.path}
-                        className="text-zinc-500 text-sm hover:text-white hover:translate-x-2 transition-all flex items-center gap-2"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
+                    <Link 
+                      to={link.path}
+                      className="text-zinc-400 text-sm hover:text-[#ccff00] hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
+                    >
+                      <FaLongArrowAltRight className="text-[10px] opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0" />
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -115,75 +118,80 @@ export default function Footer() {
 
           {/* CONTACT HUB */}
           <div className="space-y-8">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-[#ccff00] border-l-2 border-[#ccff00] pl-3">
-              Contact_HQ
+            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 flex items-center gap-2">
+               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" /> CONTACT_HQ
             </h4>
             <div className="space-y-6">
               <div className="group cursor-pointer">
-                <p className="text-[10px] text-zinc-600 uppercase font-black mb-1">Secure_Line</p>
+                <p className="text-[9px] text-zinc-600 uppercase font-black mb-1 tracking-widest">Secure_Line</p>
                 <a href="tel:+918042213489" className="text-sm font-bold group-hover:text-[#ccff00] transition-colors">+91 80 4221 3489</a>
               </div>
               <div className="group cursor-pointer">
-                <p className="text-[10px] text-zinc-600 uppercase font-black mb-1">Encrypted_Mail</p>
-                <a href="mailto:hr@codeinnovativetechnologies.com" className="text-sm font-bold group-hover:text-[#ccff00] transition-colors">hr@codeinnovativetechnologies.com</a>
+                <p className="text-[9px] text-zinc-600 uppercase font-black mb-1 tracking-widest">Global_Mail</p>
+                <a href="mailto:hr@mintwaystech.com" className="text-sm font-bold group-hover:text-[#ccff00] transition-colors underline decoration-white/5">hr@mintwaystech.com</a>
               </div>
-              <div className="flex gap-3 pt-4">
-                {[
-                  { Icon: FaGithub, url: "https://github.com/mintways" },
-                  { Icon: FaLinkedin, url: "https://linkedin.com/company/mintways" },
-                  { Icon: FaTwitter, url: "https://twitter.com/mintwaystech" },
-                  { Icon: FaDiscord, url: "https://discord.gg/mintways" }
-                ].map((social, i) => (
-                  <a 
+              
+              {/* SOCIAL MATRIX */}
+              <div className="flex gap-3 pt-2">
+                {[FaGithub, FaLinkedin, FaTwitter, FaDiscord].map((Icon, i) => (
+                  <motion.a 
                     key={i} 
-                    href={social.url} 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-500 hover:text-[#ccff00] hover:border-[#ccff00]/30 transition-all"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    href="#" 
+                    className="w-10 h-10 rounded-lg bg-zinc-900 border border-white/5 flex items-center justify-center text-zinc-500 hover:text-[#ccff00] hover:border-[#ccff00]/40 transition-all"
                   >
-                    <social.Icon size={18} />
-                  </a>
+                    <Icon size={16} />
+                  </motion.a>
                 ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* 2. BOTTOM STRIP: STATUS & TRUST */}
-        <div className="flex flex-wrap items-center justify-between gap-10 py-12 border-t border-white/5">
+        {/* --- BOTTOM STATUS BAR --- */}
+        <div className="flex flex-wrap items-center justify-between gap-10 py-10 border-t border-white/5">
           <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2 px-4 py-2 bg-emerald-500/5 border border-emerald-500/10 rounded-full">
-               <FaShieldAlt className="text-emerald-500" size={12} />
-               <span className="text-[10px] font-black text-emerald-500 uppercase tracking-tighter">AES-256 Verified</span>
+            <div className="flex items-center gap-3 px-4 py-2 bg-zinc-900 rounded-lg border border-white/5">
+               <FaGlobeAmericas className="text-[#ccff00] animate-[spin_10s_linear_infinite]" />
+               <span className="text-[10px] font-mono text-zinc-400">NODE_LOCATION: ASIA_NORTH</span>
             </div>
-            <div className="hidden sm:flex gap-6 items-center opacity-30">
-               <span className="text-[10px] font-black">ISO_27001</span>
-               <span className="text-[10px] font-black">HIPAA_READY</span>
+            <div className="hidden sm:flex gap-6 items-center">
+               <div className="flex items-center gap-2 opacity-30 group cursor-help">
+                 <FaShieldAlt className="text-[#ccff00]" />
+                 <span className="text-[10px] font-black uppercase tracking-widest group-hover:opacity-100 transition-opacity">SOC2_TYPE_II</span>
+               </div>
             </div>
           </div>
           
-          <div className="flex flex-col md:items-end gap-2">
-            <div className="flex gap-4 text-[10px] text-zinc-500 font-mono">
-              <span className="text-[#ccff00]">LOCAL_TIME: {new Date().toLocaleTimeString()}</span>
-              <span>Uptime: 99.99%</span>
+          <div className="flex flex-col md:items-end gap-1 font-mono">
+            <div className="flex gap-4 text-[10px]">
+              <span className="text-[#ccff00] tracking-widest uppercase">SYS_TIME: {time}</span>
+              <span className="text-zinc-600 tracking-tighter">LATENCY: 14ms</span>
             </div>
-            <p className="text-[10px] text-zinc-600 uppercase tracking-widest font-bold">
-              © {currentYear} Code Innovative Technologies // Designed for the future
+            <p className="text-[9px] text-zinc-600 uppercase tracking-widest font-bold">
+              © {currentYear} MINTWAYS TECH // ALL_RIGHTS_RESERVED_v4
             </p>
           </div>
 
           <motion.button 
-            whileHover={{ y: -5 }}
+            whileHover={{ y: -5, backgroundColor: "#ccff00", color: "#000" }}
             onClick={scrollToTop}
-            className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#ccff00] hover:bg-[#ccff00] hover:text-black transition-all"
+            className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#ccff00] transition-all"
           >
             <FaArrowUp />
           </motion.button>
         </div>
       </div>
 
-      {/* 3. TERMINAL LINE ACCENT */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-transparent via-[#ccff00] to-transparent animate-pulse" />
+      {/* FOOTER SCANLINE ANIMATION */}
+      <div className="relative h-1 w-full bg-zinc-900 overflow-hidden">
+        <motion.div 
+          animate={{ x: ["-100%", "100%"] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-[#ccff00] to-transparent"
+        />
+      </div>
     </footer>
   );
 }
