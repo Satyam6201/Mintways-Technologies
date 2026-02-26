@@ -17,15 +17,12 @@ import Contact from './pages/Contact';
 import AppDev from './pages/services/AppDev';
 import Consulting from './pages/services/Consulting';
 import Products from './pages/services/Products';
-import AiAutomation from './pages/services/AiAutomation'; // NEW
-import Security from './pages/services/Security';       // NEW
-import Web3 from './pages/services/Web3';               // NEW
-import DataIntelligence from './pages/services/DataIntelligence'; // NEW
+import AiAutomation from './pages/services/AiAutomation'; 
+import Security from './pages/services/Security';       
+import Web3 from './pages/services/Web3';               
+import DataIntelligence from './pages/services/DataIntelligence'; 
 import WebD from './pages/services/WebD';
 
-/**
- * Ensures page resets to top on every route change
- */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -34,9 +31,6 @@ const ScrollToTop = () => {
   return null;
 };
 
-/**
- * Cybernetic Cursor HUD
- */
 const CustomCursor = () => {
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
