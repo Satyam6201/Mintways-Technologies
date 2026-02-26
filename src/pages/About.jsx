@@ -89,7 +89,7 @@ const About = () => {
             </div>
             <div className="space-y-8">
               <p className="text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                 CODE INNOVATIVE isn’t a studio. It’s a <span className="text-white font-bold">Tactical Deployment Center</span> for market-dominating software.
+                 Code Innovative Technologies isn’t a studio. It’s a <span className="text-white font-bold">Tactical Deployment Center</span> for market-dominating software.
               </p>
               <div className="flex gap-4">
                 {["GOLANG", "REACT", "AWS", "K8S"].map(tech => (

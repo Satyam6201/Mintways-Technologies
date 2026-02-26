@@ -32,7 +32,7 @@ export default function Footer() {
       items: [
         { name: "Careers", path: "/career" },
         { name: "Open Source", path: "#" },
-        { name: "Tech Stack", path: "#" },
+        { name: "Tech Stack", path: "/services/web-dev" },
         { name: "Community", path: "#" }
       ] 
     },

@@ -22,6 +22,7 @@ import Security from './pages/services/Security';
 import Web3 from './pages/services/Web3';               
 import DataIntelligence from './pages/services/DataIntelligence'; 
 import WebD from './pages/services/WebD';
+import Software from './pages/services/Software';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -159,6 +160,7 @@ function RoutesWithAnimation() {
         <Route path="/services/ai-automation" element={<AiAutomation />} />
         <Route path="/services/security" element={<Security />} />
         <Route path="/services/web3" element={<Web3 />} />
+        <Route path="/services/software" element={<Software />} />
         <Route path="/services/data-intelligence" element={<DataIntelligence />} />
       </Routes>
 

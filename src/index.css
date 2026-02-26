@@ -8,15 +8,13 @@
   --color-electric-blue: #0066ff;
   --color-deep-zinc: #18181b;
   
-  /* Typography - Modern Tech Stacks */
-  --font-sans: "Inter", "system-ui", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
-  --font-display: "Space Grotesk", sans-serif;
+  /* Simplified Typography - Uniform Sans Stack */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Enhanced Animations */
+  /* Keep Animations for the "Tech" feel */
   --animate-float: float 6s ease-in-out infinite;
   --animate-marquee: marquee 30s linear infinite;
-  --animate-glitch: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -29,11 +27,9 @@
   }
 }
 
-/* Base Styling - Locked to Dark Mode */
 @layer base {
   html {
     scroll-behavior: smooth;
-    cursor: default;
     background-color: var(--color-main-bg);
   }
 
@@ -42,68 +38,52 @@
     color: #a1a1aa; /* zinc-400 */
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    letter-spacing: -0.01em; /* Tighter tracking for a modern look */
   }
 
-  /* Display Headings - High Contrast */
-  h1, h2, h3, .font-display {
-    font-family: var(--font-display);
+  /* Headlines - Removed special display fonts for a cleaner look */
+  h1, h2, h3, h4 {
     color: #ffffff;
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
   }
 
-  /* Mono fonts for code/diagnostics */
-  code, pre, .terminal-text {
+  /* Keep mono strictly for code/data snippets */
+  code, .terminal-text {
     font-family: var(--font-mono);
+    font-size: 0.85em;
   }
 }
 
-/* Custom "Ghost" Scrollbar */
+/* Minimal Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #27272a;
-  border-radius: 10px;
-  transition: all 0.3s ease;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-neon-lime);
 }
 
-/* Selection Color - Brand Contrast */
 ::selection {
   background-color: var(--color-neon-lime);
   color: #000000;
 }
 
-/* Advanced Utility Classes */
 @layer utilities {
-  .text-glow-blue {
-    text-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
-  }
-
-  .text-glow-lime {
-    text-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
+  .bg-dot-pattern {
+    background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+    background-size: 30px 30px;
   }
   
-  .border-gradient {
-    border-image: linear-gradient(to right, #1e1e1e, #3f3f46, #1e1e1e) 1;
-  }
-
-  .mask-fade-out {
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  }
-
-  .bg-dot-pattern {
-    background-image: radial-gradient(#27272a 1px, transparent 1px);
-    background-size: 24px 24px;
+  /* Simple glass effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 }

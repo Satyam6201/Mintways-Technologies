@@ -61,11 +61,11 @@ export default function Hero() {
               whileTap={{ scale: 0.98 }}
               className="w-full sm:w-auto px-8 py-4 bg-[#ccff00] text-black font-black text-[10px] tracking-[0.3em] uppercase rounded-sm flex items-center justify-center gap-3 transition-colors"
             >
-              Start Project <FaBolt />
+              <a href="/contact">Start Project </a><FaBolt />
             </motion.button>
             
             <button className="w-full sm:w-auto px-8 py-4 border border-white/5 text-zinc-400 font-black text-[10px] tracking-[0.3em] uppercase rounded-sm hover:bg-white/5 hover:text-white transition-all flex items-center justify-center gap-3">
-              Explore Stack <FaArrowRight size={8} className="text-[#ccff00]" />
+              <a href="/career">Explore Stack</a> <FaArrowRight size={8} className="text-[#ccff00]" />
             </button>
           </div>
 
